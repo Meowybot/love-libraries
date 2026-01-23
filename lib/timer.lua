@@ -1,7 +1,7 @@
 local timer = {}
 local metatimer = {}
 metatimer.basic = {}
-metatimer.basic.__index = metatimer
+metatimer.basic.__index = metatimer.basic
 
 function metatimer.basic:pause()
   if not self.paused then
