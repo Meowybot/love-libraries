@@ -29,6 +29,15 @@ function metatimer.basic:finish()
   self.iti = self.timeset
 end
 
+function metatimer.basic:reset()
+  self.iti = 0
+end
+
+function metatimer.basic:getTime(multiplier)
+  local mult = multiplier or 1
+  return math.min(self.iti/self.timeset, 1) * mult
+end
+
 function timer.newBasic(time, onEnd, startpaused)
   local newti = {}
   newti.timeset = time or 2
