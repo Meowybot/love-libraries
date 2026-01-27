@@ -51,4 +51,5 @@ end
 metatimer.relseq = {}
 metatimer.relseq.__index=metatimer.relseq
 
-function timer.newRelative
+function timer.newRelative()
+end
