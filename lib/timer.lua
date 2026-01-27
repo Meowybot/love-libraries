@@ -51,5 +51,47 @@ end
 metatimer.relseq = {}
 metatimer.relseq.__index=metatimer.relseq
 
-function timer.newRelative()
+function metatimer.relseq:pause()
+  self.paused = true
+end
+
+function metatimer.relseq:resume()
+  self.paused = false
+end
+
+function metatimer.relseq:update(dt)
+  if not self.paused then
+    self.iti = self.iti + dt
+    if self.iti >= self.keys[curkey].time then
+      self.paused = true
+      self.keys[curkey].onEnd()
+      self.iti = 0
+      self.curkey = self.curkey+1
+      self.paused = false
+    end
+  end
+end
+
+function metatimer.relseq:reset(keepKey)
+  self.iti = 0
+  if not keepKey then
+    self.curkey = 1
+  end
+end
+
+function metatimer.relseq:getTime(m)
+  local mult = m or 1
+  local keyp = self.curkey / #self.keys
+  local timep = self.iti / self.keys[self.curkey].time
+  return keyp, timep
+end
+
+function timer.newRelative(keys, startpaused)
+  local newti = {}
+  newti.keys = keys
+  newti.curkey = 1
+  newti.paused = startpaused or false
+  newti.iti = 0
+  setmetatable(newti, metatimer.relseq)
+  return newti
 end
