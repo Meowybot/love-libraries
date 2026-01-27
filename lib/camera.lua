@@ -27,8 +27,13 @@ function cammeta:rotate(rot)
   self.rot = self.rot + rot
 end
 
-function cam.new(x, y, zoom, rot)
-  --replace soon
+function cam.new(x, y, zoom, rot, centered)
+  local newobj = {}
+  newobj.x = x
+  newobj.y = y
+  newobj.zoom = zoom
+  newobj.rot = rot
+  newobj.centered = centered
 end
 
 return cam
