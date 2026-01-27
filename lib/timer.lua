@@ -62,12 +62,14 @@ end
 function metatimer.relseq:update(dt)
   if not self.paused then
     self.iti = self.iti + dt
-    if self.iti >= self.keys[curkey].time then
+    if self.iti >= self.keys[self.curkey].time then
       self.paused = true
-      self.keys[curkey].onEnd()
-      self.iti = 0
-      self.curkey = self.curkey+1
-      self.paused = false
+      self.keys[self.curkey].onEnd()
+      self.iti = self.iti - self.keys[self.curkey].time
+      if self.curkey < #self.keys then
+        self.curkey = self.curkey+1
+        self.paused = false
+      end
     end
   end
 end
