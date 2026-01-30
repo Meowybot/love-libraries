@@ -29,10 +29,13 @@ end
 
 function cammeta:push()
   love.graphics.push()
+  love.graphics.translate(-self.x, -self.y)
+  love.graphics.scale(self.zoom, self.zoom)
+  love.graphics.rotate(self.rot)
 end
 
 function cammeta:pop()
-  love.graphics.pop
+  love.graphics.pop()
 end
 
 function cam.new(x, y, zoom, rot, centered)
