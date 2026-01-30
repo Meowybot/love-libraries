@@ -27,6 +27,14 @@ function cammeta:rotate(rot)
   self.rot = self.rot + rot
 end
 
+function cammeta:push()
+  love.graphics.push()
+end
+
+function cammeta:pop()
+  love.graphics.pop
+end
+
 function cam.new(x, y, zoom, rot, centered)
   local newobj = {}
   newobj.x = x
