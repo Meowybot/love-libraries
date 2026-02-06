@@ -103,4 +103,23 @@ end
 metatimer.tween = {}
 metatimer.tween.__index = metatimer.tween
 
---do it
+local easewords = {
+["linear"] = "linear",
+["none"] = "linear",
+["easein"] = "easein",
+["easeout"] = "easeout",
+["easeinout"] = "easeinout",
+["step"] = "step"
+}
+
+function timer.newTween(a, b, time, easing, isInteger, startpaused, onEnd)
+  local newti = {}
+  newti.timeset = time or 2
+  newti.a = a or 0
+  newti.b = b or 1
+  newti.onEnd = onEnd or function() end
+  newti.paused = startpaused or false
+  newti.iti = 0
+  newti.integer = isInteger or false
+  newti.easing = "linear"
+end
