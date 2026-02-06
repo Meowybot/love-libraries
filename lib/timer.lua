@@ -48,6 +48,7 @@ function timer.newBasic(time, onEnd, startpaused)
   return newti
 end
 
+
 metatimer.relseq = {}
 metatimer.relseq.__index=metatimer.relseq
 
@@ -97,3 +98,9 @@ function timer.newRelative(keys, startpaused)
   setmetatable(newti, metatimer.relseq)
   return newti
 end
+
+
+metatimer.tween = {}
+metatimer.tween.__index = metatimer.tween
+
+--do it
