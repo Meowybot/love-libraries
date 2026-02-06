@@ -126,4 +126,6 @@ function timer.newTween(a, b, time, easing, isInteger, startpaused, onEnd)
   else
     newti.easing = "linear"
   end
+  setmetatable(newti, metatimer.tween)
+  return newti
 end
