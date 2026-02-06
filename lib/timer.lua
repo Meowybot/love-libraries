@@ -121,5 +121,9 @@ function timer.newTween(a, b, time, easing, isInteger, startpaused, onEnd)
   newti.paused = startpaused or false
   newti.iti = 0
   newti.integer = isInteger or false
-  newti.easing = "linear"
+  if easing then
+    newti.easing = easewords[easing] or "linear"
+  else
+    newti.easing = "linear"
+  end
 end
