@@ -112,6 +112,14 @@ local easewords = {
 ["step"] = "step"
 }
 
+function metatimer.tween:pause()
+  self.paused = true
+end
+
+function metatimer.tween:resume()
+  self.paused = false
+end
+
 function timer.newTween(a, b, time, easing, isInteger, startpaused, onEnd)
   local newti = {}
   newti.timeset = time or 2
