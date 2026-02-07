@@ -120,6 +120,13 @@ function metatimer.tween:resume()
   self.paused = false
 end
 
+function metatimer.tween:update(dt)
+  if not self.paused then
+    self.iti = self.iti + dt
+    self.value = 10
+  end
+end
+
 function timer.newTween(a, b, time, easing, isInteger, startpaused, onEnd)
   local newti = {}
   newti.timeset = time or 2
