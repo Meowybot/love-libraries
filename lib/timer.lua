@@ -125,6 +125,7 @@ function timer.newTween(a, b, time, easing, isInteger, startpaused, onEnd)
   newti.timeset = time or 2
   newti.a = a or 0
   newti.b = b or 1
+  newti.value = a
   newti.onEnd = onEnd or function() end
   newti.paused = startpaused or false
   newti.iti = 0
