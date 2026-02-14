@@ -108,7 +108,7 @@ local easewords = {
 ["none"] = "linear",
 ["easein"] = "easein",
 ["easeout"] = "easeout",
-["easeinout"] = "easeinout"
+["step"] = "easeinout"
 }
 
 local timefuncs = {
@@ -121,8 +121,8 @@ local timefuncs = {
   ["easeout"] = function(time)
     return 1-((1-time)^2)
   end,
-  ["easeinout"] = function(time)
-    return ((time*10)//1)*10
+  ["step"] = function(time)
+    return ((time*10)//1)/10
   end
 }
 
@@ -142,22 +142,22 @@ function metatimer.tween:update(dt)
       self.iti = self.timeset
       self.onEnd()
     end
-    self.value = self.a + ((self.a - self.b)*timefuncs[self.easing](self.iti/self.timeset))
+    self.value = self.a + ((self.b - self.a)*timefuncs[self.easing](self.iti/self.timeset))
     if self.integer then
       self.value = self.value // 1
     end
   end
 end
 
-function metatimer.tween.finish()
+function metatimer.tween:finish()
   self.iti = self.timeset
 end
 
-function metatimer.tween.getTime(m)
+function metatimer.tween:getTime(m)
   return self.iti/self.timeset
 end
 
-function metatimer.tween.reset()
+function metatimer.tween:reset()
   self.iti = 0
 end
 
