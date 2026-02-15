@@ -120,9 +120,6 @@ local timefuncs = {
   end,
   ["easeout"] = function(time)
     return 1-((1-time)^2)
-  end,
-  ["step"] = function(time)
-    return ((time*10)//1)/10
   end
 }
 
@@ -144,7 +141,7 @@ function metatimer.tween:update(dt)
     end
     self.value = self.a + ((self.b - self.a)*timefuncs[self.easing](self.iti/self.timeset))
     if self.integer then
-      self.value = self.value // 1
+      self.value = self.value
     end
   end
 end
